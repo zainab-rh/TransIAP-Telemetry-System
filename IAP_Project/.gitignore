@@ -1,0 +1,24 @@
+# Compiled Java classes
+*.class
+
+# Log files
+*.log
+
+# Package Files
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+
+# IDE - Keep .project but ignore dynamic settings
+.settings/
+.classpath
+bin/
+build/

@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GeneradorGeoJSON:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GeneradorGeoJSON_jar</output-path>
+    <root id="archive" name="GeneradorGeoJSON.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/JSON/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="GeneradoresGeo" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/json.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/amqp-client-4.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/slf4j-api-1.7.21.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/slf4j-simple-1.7.22.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
