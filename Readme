@@ -2,33 +2,35 @@
 
 **TransIAP** is a robust, event-driven integration platform built to ingest and process real-time GPS telemetry from a heterogeneous transport fleet. This project implements a decoupled architecture using **RabbitMQ** to normalize data from legacy (CSV), standard (XML/KML), and modern (GeoJSON) tracking devices into a unified system of record.
 
-##  System Architecture
+
+
+## System Architecture
 The system is built as a set of independent, interoperable Java services:
 
-**Ingestion Layer**: Three independent producers simulate device telemetry in **CSV**, **KML**, and **GeoJSON** formats.
-**Intelligent Routing**: A **Topic Exchange** (`transiap.gps`) performs selective protocol filtering based on specific Routing Keys such as `gps.kml`, `gps.json`, and `gps.formato.csv`.
-**Enrichment Middleware**: A central processor normalizes inputs and performs synchronous **REST calls** to the SNTN API to append mandatory security authorization keys and official timestamps.
-**Broadcast & Monitoring**: Processed data is published via a **Fanout Exchange** (`traslados.localizaciones`), enabling simultaneous, real-time broadcasting to database persistence and terminal auditing modules without logical coupling.
+* **Ingestion Layer**: Three independent producers simulate device telemetry in **CSV**, **KML**, and **GeoJSON** formats.
+* **Intelligent Routing**: A **Topic Exchange** (`transiap.gps`) performs selective protocol filtering based on specific Routing Keys such as `gps.kml`, `gps.json`, and `gps.formato.csv`.
+* **Enrichment Middleware**: A central processor normalizes inputs and performs synchronous **REST calls** to the SNTN API to append mandatory security authorization keys and official timestamps.
+* **Broadcast & Monitoring**: Processed data is published via a **Fanout Exchange** (`traslados.localizaciones`), enabling simultaneous, real-time broadcasting to database persistence and terminal auditing modules without logical coupling.
 
 ---
 
-##  Technical Stack
-**Core**: Java 8+ (utilizing `amqp-client-4.0.2` for industrial-grade messaging).
-**Messaging**: RabbitMQ (Advanced Message Queuing Protocol).
-**API Integration**: RESTful communication for data enrichment (auth keys/timestamps).
-**Automation**: PowerShell for full-stack orchestration and environment management.
-**Persistence**: MySQL integrated via a custom DAO (Data Access Object) layer.
+## Technical Stack
+* **Core**: Java 8+ (utilizing `amqp-client-4.0.2` for industrial-grade messaging).
+* **Messaging**: RabbitMQ (Advanced Message Queuing Protocol).
+* **API Integration**: RESTful communication for data enrichment (auth keys/timestamps).
+* **Automation**: PowerShell for full-stack orchestration and environment management.
+* **Persistence**: MySQL integrated via a custom DAO (Data Access Object) layer.
 
 ---
 
-##  Engineering Highlights
-**Full Lifecycle Ownership**: Developed the entire distributed environment, including 6 distinct functional modules (Generators, Middleware, Registry, and Visualizer), complex messaging exchanges, and database schemas.
-**DevOps Automation**: Authored a professional orchestration script (`LanzarSistema.ps1`) that manages service synchronization with safety pauses and utilizes the **Windows User32 API** to automatically organize console windows into a pre-configured monitoring grid.
-**Asynchronous Reliability**: Implemented Java `CountDownLatch` for robust thread management and specific error-handling routines to prevent system failure during REST API connection drops.
+## Engineering Highlights
+* **Full Lifecycle Ownership**: Developed the entire distributed environment, including 6 distinct functional modules (Generators, Middleware, Registry, and Visualizer), complex messaging exchanges, and database schemas.
+* **DevOps Automation**: Authored a professional orchestration script (`LanzarSistema.ps1`) that manages service synchronization with safety pauses and utilizes the **Windows User32 API** to automatically organize console windows into a pre-configured monitoring grid.
+* **Asynchronous Reliability**: Implemented Java `CountDownLatch` for robust thread management and specific error-handling routines to prevent system failure during REST API connection drops.
 
 ---
 
-##  Documentation
+## Documentation
 For a comprehensive analysis of the architectural patterns, data schemas, and exchange designs, please refer to the technical report:
 
 * [📥 Download Design Documentation (PDF)](Docs.pdf)
