@@ -1,32 +1,32 @@
 # TransIAP: Distributed Real-Time Telemetry System
 
-**TransIAP** is a robust, event-driven integration platform built to ingest and process real-time GPS telemetry from a heterogeneous transport fleet. This project implements a decoupled architecture using **RabbitMQ** to normalize data from legacy (CSV), standard (XML/KML), and modern (GeoJSON) tracking devices into a unified system of record.
+[cite_start]**TransIAP** is a robust, event-driven integration platform built to ingest and process real-time GPS telemetry from a heterogeneous transport fleet[cite: 390, 1358]. [cite_start]This project implements a decoupled architecture using **RabbitMQ** to normalize data from legacy (CSV), standard (XML/KML), and modern (GeoJSON) tracking devices into a unified system of record[cite: 397, 398, 427, 1365, 1366, 1395].
 
 
 
 ## System Architecture
-The system is built as a set of independent, interoperable Java services:
+[cite_start]The system is built as a set of independent, interoperable Java services[cite: 395, 1363]:
 
-* **Ingestion Layer**: Three independent producers simulate device telemetry in **CSV**, **KML**, and **GeoJSON** formats.
-* **Intelligent Routing**: A **Topic Exchange** (`transiap.gps`) performs selective protocol filtering based on specific Routing Keys such as `gps.kml`, `gps.json`, and `gps.formato.csv`.
-* **Enrichment Middleware**: A central processor normalizes inputs and performs synchronous **REST calls** to the SNTN API to append mandatory security authorization keys and official timestamps.
-* **Broadcast & Monitoring**: Processed data is published via a **Fanout Exchange** (`traslados.localizaciones`), enabling simultaneous, real-time broadcasting to database persistence and terminal auditing modules without logical coupling.
+* [cite_start]**Ingestion Layer**: Three independent producers simulate device telemetry in **CSV**, **KML**, and **GeoJSON** formats[cite: 395, 396, 1363, 1364].
+* [cite_start]**Intelligent Routing**: A **Topic Exchange** (`transiap.gps`) performs selective protocol filtering based on specific Routing Keys such as `gps.kml`, `gps.json`, and `gps.formato.csv`[cite: 398, 401, 405, 408, 1366, 1369, 1373, 1376].
+* [cite_start]**Enrichment Middleware**: A central processor normalizes inputs and performs synchronous **REST calls** to the SNTN API to append mandatory security authorization keys and official timestamps[cite: 425, 427, 442, 443, 1393, 1395, 1410, 1411].
+* [cite_start]**Broadcast & Monitoring**: Processed data is published via a **Fanout Exchange** (`traslados.localizaciones`), enabling simultaneous, real-time broadcasting to database persistence and terminal auditing modules without logical coupling[cite: 436, 437, 447, 462, 464, 468, 1404, 1405, 1415, 1429, 1431, 1435].
 
 ---
 
 ## Technical Stack
-* **Core**: Java 8+ (utilizing `amqp-client-4.0.2` for industrial-grade messaging).
-* **Messaging**: RabbitMQ (Advanced Message Queuing Protocol).
-* **API Integration**: RESTful communication for data enrichment (auth keys/timestamps).
-* **Automation**: PowerShell for full-stack orchestration and environment management.
-* **Persistence**: MySQL integrated via a custom DAO (Data Access Object) layer.
+* [cite_start]**Core**: Java 8+ (utilizing `amqp-client-4.0.2` for industrial-grade messaging)[cite: 422, 424, 1390, 1392].
+* [cite_start]**Messaging**: RabbitMQ (Advanced Message Queuing Protocol)[cite: 1168, 1337].
+* [cite_start]**API Integration**: RESTful communication for data enrichment (auth keys/timestamps)[cite: 442, 491, 1251, 1410].
+* [cite_start]**Automation**: PowerShell for full-stack orchestration and environment management[cite: 481, 482, 1448, 1449].
+* [cite_start]**Persistence**: MySQL integrated via a custom DAO (Data Access Object) layer[cite: 454, 494, 496, 1228, 1422, 1460].
 
 ---
 
 ## Engineering Highlights
-* **Full Lifecycle Ownership**: Developed the entire distributed environment, including 6 distinct functional modules (Generators, Middleware, Registry, and Visualizer), complex messaging exchanges, and database schemas.
-* **DevOps Automation**: Authored a professional orchestration script (`LanzarSistema.ps1`) that manages service synchronization with safety pauses and utilizes the **Windows User32 API** to automatically organize console windows into a pre-configured monitoring grid.
-* **Asynchronous Reliability**: Implemented Java `CountDownLatch` for robust thread management and specific error-handling routines to prevent system failure during REST API connection drops.
+* [cite_start]**Full Lifecycle Ownership**: Developed the entire distributed environment, including 6 distinct functional modules (Generators, Middleware, Registry, and Visualizer), complex messaging exchanges, and database schemas[cite: 395, 425, 446, 460, 483, 1363, 1393, 1414, 1427, 1450].
+* [cite_start]**DevOps Automation**: Authored a professional orchestration script (`LanzarSistema.ps1`) that manages service synchronization with safety pauses and utilizes the **Windows User32 API** to automatically organize console windows into a pre-configured monitoring grid[cite: 482, 484, 486, 1449, 1451, 1453].
+* [cite_start]**Asynchronous Reliability**: Implemented Java `CountDownLatch` for robust thread management and specific error-handling routines to prevent system failure during REST API connection drops[cite: 444, 478, 1412, 1445].
 
 ---
 
